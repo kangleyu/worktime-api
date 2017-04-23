@@ -1,12 +1,12 @@
 # README #
 
-This README would normally document whatever steps are necessary to get your application up and running.
+This is RESTful API for worktime app
+The API is based on node.js and express.
 
 ### What is this repository for? ###
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+* Maintain the worktime API repository
+* 0.1.0
 
 ### How do I get set up? ###
 
@@ -17,13 +17,6 @@ This README would normally document whatever steps are necessary to get your app
 * How to run tests
 * Deployment instructions
 
-### Contribution guidelines ###
-
-* Writing tests
-* Code review
-* Other guidelines
-
 ### Who do I talk to? ###
 
-* Repo owner or admin
-* Other community or team contact
+* Tom Yu (kangleyu@gmail.com)
