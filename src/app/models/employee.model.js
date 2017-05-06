@@ -1,7 +1,10 @@
+var _ = require('lodash');
+var option = require('./base.options')();
 
-module.exports = require('./factory')('Employee', {
+module.exports = require('./factory')('Employee', _.merge(option, {
   name: { require: true, type: String },
-  phone: { require: false, type: String },
-  email: { require: false, type: String },
-  age: { required: false, type: Number }
-});
+  phone: { type: String },
+  email: { type: String },
+  age: { type: Number },
+  gender: { type: String }
+}));

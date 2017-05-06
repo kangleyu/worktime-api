@@ -8,6 +8,8 @@ var app = express();
 
 // Configuration
 var port = process.env.PORT || 8000;
+console.log('### ENV: ' + process.env.NODE_ENV);
+console.log('### MongoDB: ' + config.mongo.uri);
 mongoose.connect(config.mongo.uri);
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -20,6 +22,9 @@ app.get('/', function(req, res) {
 
 // Configure for app routes
 require('./app/routes')(app);
+
+// Seed database if required
+if (config.seedDB) { require('./app/config/seed'); }
 
 // start the application
 app.listen(port, function() {
