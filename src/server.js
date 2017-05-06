@@ -7,7 +7,7 @@ var config = require('./app/config/environment');
 var app = express();
 
 // Configuration
-var port = process.env.PORT || 8080;
+var port = process.env.PORT || 8000;
 mongoose.connect(config.mongo.uri);
 
 app.use(bodyParser.urlencoded({ extended: false }));

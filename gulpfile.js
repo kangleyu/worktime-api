@@ -1,5 +1,6 @@
 var gulp = require('gulp');
 var args = require('yargs').argv;
+var strip = require('gulp-strip-comments');
 var $ = require('gulp-load-plugins')({ lazy: true });
 var del = require('del');
 var config = require('./gulp.config')();
@@ -39,7 +40,7 @@ gulp.task('serve-dev', function() {
     },
     watch: [config.server]
   };
-  
+
   return $.nodemon(nodeOptions)
     .on('restart', function(evt) {
       log('*** nodemon restarted ***');
@@ -62,8 +63,9 @@ gulp.task('serve-dev', function() {
 
 gulp.task('build', ['vet'], function() {
   log('Optimizing the javascript files...');
-  return gulp.src(config.servejs)
-    .pipe($.uglify())
+  return gulp.src(config.allfiles)
+    .pipe(strip())
+    // .pipe($.uglify())
     .pipe(gulp.dest(config.build));
 });
 
@@ -141,7 +143,7 @@ function serve(isDev, specRunner) {
     delayTime: 1,
     env: {
       'PORT': port,
-      'NODE_ENV': isDev ? 'dev' : 'build'
+      'NODE_ENV': isDev ? 'dev' : 'prod'
     },
     watch: [config.server]
   };

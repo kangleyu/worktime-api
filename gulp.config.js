@@ -15,6 +15,7 @@ module.exports = function() {
       server + '**/*.js',
       './*.js'
     ],
+    allfiles: server + '**/*.*',
     servejs: server + '**/*.js',
     server: server,
     build: build,
