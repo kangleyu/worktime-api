@@ -4,7 +4,10 @@
   "description": "worktime api ",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "init": "npm install",
+    "test": "gulp test",
+    "start": "gulp serve-dev",
+    "build": "gulp serve-build"
   },
   "repository": {
     "type": "git",
@@ -17,9 +20,12 @@
   "license": "ISC",
   "homepage": "https://bitbucket.org/kangleyu/worktime-api#readme",
   "dependencies": {
+    "bcrypt": "^1.0.2",
     "body-parser": "^1.17.1",
     "cors": "^2.8.3",
     "express": "^4.15.2",
+    "jsonwebtoken": "^7.4.0",
+    "mongoose": "^4.9.7",
     "morgan": "^1.8.1"
   },
   "devDependencies": {
