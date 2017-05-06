@@ -35,11 +35,11 @@ gulp.task('serve-dev', function() {
     delayTime: 1,
     env: {
       'PORT': port,
-      'NODE_ENV': isDev ? 'dev' : 'build'
+      'NODE_ENV': isDev ? 'dev' : 'prod'
     },
     watch: [config.server]
   };
-
+  
   return $.nodemon(nodeOptions)
     .on('restart', function(evt) {
       log('*** nodemon restarted ***');

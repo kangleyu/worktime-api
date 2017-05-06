@@ -1,11 +1,13 @@
-var express = require('express');
-var router = express.Router();
+var errors = require('../common/errors');
 
-router.get('/employee', function (req, res) {
-  res.json({
-    'name': 'Tom',
-    'phone': '1391000000'
-  });
-});
+module.exports = function(app) {
+  app.use('/api/employee', require('./employee.route'));
 
-module.exports = router;
+  app.route('/url(api|auth|components|app|browser_components|assets)/*')
+    .get(errors[404]);
+
+  app.route('/*')
+    .get((req, res) => {
+      res.json({ 'Message': 'No endpoint found'});
+    });
+};
