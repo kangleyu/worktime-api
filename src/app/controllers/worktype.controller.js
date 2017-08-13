@@ -13,7 +13,7 @@ publicApi.total = function(req, res) {
 
 // get page data based on index and size
 publicApi.page = function(req, res) {
-  const index = req.params.index | 1;
+  const index = req.params.index || 1;
   const size = req.params.size || 10;
   const start = (index - 1) * size;
 
@@ -24,8 +24,8 @@ publicApi.page = function(req, res) {
 
 publicApi.search = function(req, res) {
   const term = req.params.term;
-  const index = req.params.index | 1;
-  const size = req.params.size | 10;
+  const index = req.params.index || 1;
+  const size = req.params.size || 10;
   const start = (index - 1) * size;
 
   return Project.find(
