@@ -8,4 +8,9 @@ module.exports = require('./factory')('Worktime', _.merge(option, {
   year: { type: Number },
   month: { type: Number },
   worktime: { type: Number, default: 0 }
-}));
+}), {
+  employee: 'text', 
+  project: 'text', 
+  worktime: 'text', 
+  worktype: 'text' 
+});

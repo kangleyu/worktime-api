@@ -9,4 +9,9 @@ module.exports = require('./factory')('Payment', _.merge(option, {
   year: Number,
   month: Number,
   paid: { type: Number, default: 0 }
-}));
+}), {
+  employee: 'text', 
+  project: 'text', 
+  worktype: 'text', 
+  paid: 'text'
+});

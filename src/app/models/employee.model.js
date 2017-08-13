@@ -8,4 +8,9 @@ module.exports = require('./factory')('Employee', _.merge(option, {
   age: { type: Number },
   gender: { type: String },
   idCard: { type: String }
-}));
+}), {
+  name: 'text', 
+  phone: 'text', 
+  email: 'text', 
+  idCard: 'text' 
+});

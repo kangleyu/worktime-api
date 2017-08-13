@@ -8,4 +8,9 @@ module.exports = require('./factory')('Project', _.merge(option, {
   state: { type: String, default: '未开工' },
   start: { type: Date },
   end: { type: Date }
-}));
+}), {
+  name: 'text', 
+  address: 'text', 
+  manager: 'text', 
+  state: 'text' 
+});
