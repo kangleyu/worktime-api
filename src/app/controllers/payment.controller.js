@@ -6,7 +6,7 @@ var publicApi = {};
 
 // get total count of the entries
 publicApi.total = function(req, res) {
-  return Project.count().exec()
+  return Payment.count().exec()
     .then(handler.respondWithResult(res))
     .catch(handler.handleError(res));
 }
@@ -17,7 +17,7 @@ publicApi.page = function(req, res) {
   const size = req.params.size || 10;
   const start = (index - 1) * size;
 
-  return Project.find().limit(size).skip(start).exec()
+  return Payment.find().limit(size).skip(start).exec()
     .then(handler.respondWithResult(res))
     .catch(handler.handleError(res));
 };
@@ -28,7 +28,7 @@ publicApi.search = function(req, res) {
   const size = req.params.size || 10;
   const start = (index - 1) * size;
 
-  return Project.find(
+  return Payment.find(
         { $text : { $search : term } }
     ).limit(size).skip(start).exec()
     .then(handler.respondWithResult(res))
