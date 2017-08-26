@@ -17,7 +17,7 @@ publicApi.page = function(req, res) {
   const size = req.params.size || 10;
   const start = (index - 1) * size;
 
-  return Employee.find().limit(size).skip(start).exec()
+  return Employee.find().sort({createdAt: -1}).limit(size).skip(start).exec()
     .then(handler.respondWithResult(res))
     .catch(handler.handleError(res));
 };
@@ -30,7 +30,7 @@ publicApi.search = function(req, res) {
 
   return Employee.find(
         { $text : { $search : term } }
-    ).limit(size).skip(start).exec()
+    ).sort({createdAt: -1}).limit(size).skip(start).exec()
     .then(handler.respondWithResult(res))
     .catch(handler.handleError(res));
 };

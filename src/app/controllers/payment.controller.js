@@ -17,7 +17,7 @@ publicApi.page = function(req, res) {
   const size = req.params.size || 10;
   const start = (index - 1) * size;
 
-  return Payment.find().limit(size).skip(start).exec()
+  return Payment.find().sort({createdAt: -1}).limit(size).skip(start).exec()
     .then(handler.respondWithResult(res))
     .catch(handler.handleError(res));
 };
@@ -30,14 +30,14 @@ publicApi.search = function(req, res) {
 
   return Payment.find(
         { $text : { $search : term } }
-    ).limit(size).skip(start).exec()
+    ).sort({createdAt: -1}).limit(size).skip(start).exec()
     .then(handler.respondWithResult(res))
     .catch(handler.handleError(res));
 };
 
 // Gets a list of Payment
 publicApi.index = function(req, res) {
-  return Payment.find().exec()
+  return Payment.find().sort({createdAt: -1}).exec()
     .then(handler.respondWithResult(res))
     .catch(handler.handleError(res));
 };

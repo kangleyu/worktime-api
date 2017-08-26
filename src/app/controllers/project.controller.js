@@ -17,7 +17,7 @@ publicApi.page = function(req, res) {
   const size = req.params.size || 10;
   const start = (index - 1) * size;
 
-  return Project.find().limit(size).skip(start).exec()
+  return Project.find().sort({createdAt: -1}).limit(size).skip(start).exec()
     .then(handler.respondWithResult(res))
     .catch(handler.handleError(res));
 };
@@ -30,14 +30,14 @@ publicApi.search = function(req, res) {
 
   return Project.find(
         { $text : { $search : term } }
-    ).limit(size).skip(start).exec()
+    ).sort({createdAt: -1}).limit(size).skip(start).exec()
     .then(handler.respondWithResult(res))
     .catch(handler.handleError(res));
 };
 
 // Gets a list of Project
 publicApi.index = function(req, res) {
-  return Project.find().exec()
+  return Project.find().sort({createdAt: -1}).exec()
     .then(handler.respondWithResult(res))
     .catch(handler.handleError(res));
 };

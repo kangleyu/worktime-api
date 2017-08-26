@@ -17,7 +17,7 @@ publicApi.page = function(req, res) {
   const size = req.params.size || 10;
   const start = (index - 1) * size;
 
-  return Worktype.find().limit(size).skip(start).exec()
+  return Worktype.find().sort({createdAt: -1}).limit(size).skip(start).exec()
     .then(handler.respondWithResult(res))
     .catch(handler.handleError(res));
 };
@@ -30,14 +30,14 @@ publicApi.search = function(req, res) {
 
   return Worktype.find(
         { $text : { $search : term } }
-    ).limit(size).skip(start).exec()
+    ).sort({createdAt: -1}).limit(size).skip(start).exec()
     .then(handler.respondWithResult(res))
     .catch(handler.handleError(res));
 };
 
 // Gets a list of Worktype
 publicApi.index = function(req, res) {
-  return Worktype.find().exec()
+  return Worktype.find().sort({createdAt: -1}).exec()
     .then(handler.respondWithResult(res))
     .catch(handler.handleError(res));
 };
