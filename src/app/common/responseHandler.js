@@ -43,6 +43,19 @@ publicApi.handleEntityNotFound = function(res) {
   };
 };
 
+publicApi.handleEntityExists = function(req, res) {
+  return function(entity) {
+    if (entity.length > 0) {
+      res.status(302).send({
+        "ErrorCode": "302",
+        "Message": "Entity already exists." 
+      }).end();
+      return null;
+    }
+    return req.body;
+  };
+};
+
 publicApi.handleError = function(res, statusCode) {
   statusCode = statusCode || 500;
   return function(err) {

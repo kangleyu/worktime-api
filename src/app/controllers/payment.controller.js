@@ -45,14 +45,16 @@ publicApi.index = function(req, res) {
 // Gets a single Payment from the DB
 publicApi.show = function(req, res) {
   return Payment.findById(req.params.id).exec()
-    .then(handler.handleEntityNotFound(res))
+    .then(handler.handleEntityNotFound(req, res))
     .then(handler.respondWithResult(res))
     .catch(handler.handleError(res));
 };
 
 // Creates a new Payment in the DB
 publicApi.create = function(req, res) {
-  return Payment.create(req.body)
+  return Payment.find({ name: req.body.name }).exec()
+    .then(handler.handleEntityExists(req, res))
+    .then(createNew())
     .then(handler.respondWithResult(res, 201))
     .catch(handler.handleError(res));
 };
@@ -75,6 +77,20 @@ publicApi.destroy = function(req, res) {
     .then(handler.handleEntityNotFound(res))
     .then(handler.removeEntity(res))
     .catch(handler.handleError(res));
+};
+
+/**
+ * Private methods
+ */
+var createNew = function() {
+  return function(entity) {
+    // entity is the param passed down from up chain, 
+    // here if it already exists, it will pass down null.
+    // otherwise, it pass down req.body
+    if(entity) { 
+      return Payment.create(entity);
+    }
+  };
 };
 
 module.exports = publicApi;

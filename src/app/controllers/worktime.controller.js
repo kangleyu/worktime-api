@@ -52,7 +52,9 @@ publicApi.show = function(req, res) {
 
 // Creates a new Worktime in the DB
 publicApi.create = function(req, res) {
-  return Worktime.create(req.body)
+  return Worktime.find({ name: req.body.name }).exec()
+    .then(handler.handleEntityExists(req, res))
+    .then(createNew())
     .then(handler.respondWithResult(res, 201))
     .catch(handler.handleError(res));
 };
@@ -75,6 +77,20 @@ publicApi.destroy = function(req, res) {
     .then(handler.handleEntityNotFound(res))
     .then(handler.removeEntity(res))
     .catch(handler.handleError(res));
+};
+
+/**
+ * Private methods
+ */
+var createNew = function() {
+  return function(entity) {
+    // entity is the param passed down from up chain, 
+    // here if it already exists, it will pass down null.
+    // otherwise, it pass down req.body
+    if(entity) { 
+      return Worktime.create(entity);
+    }
+  };
 };
 
 module.exports = publicApi;
