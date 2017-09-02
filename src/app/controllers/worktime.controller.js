@@ -52,7 +52,13 @@ publicApi.show = function(req, res) {
 
 // Creates a new Worktime in the DB
 publicApi.create = function(req, res) {
-  return Worktime.find({ name: req.body.name }).exec()
+  return Worktime.find({ 
+    employee: req.body.employee, 
+    project: req.body.project,
+    worktype: req.body.worktype,
+    year: req.body.year,
+    month: req.body.month
+   }).exec()
     .then(handler.handleEntityExists(req, res))
     .then(createNew())
     .then(handler.respondWithResult(res, 201))

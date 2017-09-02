@@ -52,7 +52,7 @@ publicApi.show = function(req, res) {
 
 // Creates a new Worktype in the DB
 publicApi.create = function(req, res) {
-  return Worktype.find({ name: req.body.name }).exec()
+  return Worktype.find({ worktype: req.body.worktype }).exec()
     .then(handler.handleEntityExists(req, res))
     .then(createNew())
     .then(handler.respondWithResult(res, 201))
