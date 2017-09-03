@@ -52,7 +52,14 @@ publicApi.show = function(req, res) {
 
 // Creates a new Payment in the DB
 publicApi.create = function(req, res) {
-  return Payment.find({ name: req.body.name }).exec()
+  return Payment.find({ 
+    employee: req.body.employee,
+    project: req.body.project,
+    worktype: req.body.worktype,
+    year: req.body.year,
+    month: req.body.month,
+    isUpperHalf: req.body.isUpperHalf
+   }).exec()
     .then(handler.handleEntityExists(req, res))
     .then(createNew())
     .then(handler.respondWithResult(res, 201))
