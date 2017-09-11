@@ -61,6 +61,8 @@ publicApi.create = function(req, res) {
 
 // Updates an existing Employee in the DB
 publicApi.update = function(req, res) {
+  console.log("updating");
+  console.log(req.body._id);
   if (req.body._id) {
     delete req.body._id;
   }
