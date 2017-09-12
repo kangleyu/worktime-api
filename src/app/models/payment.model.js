@@ -8,7 +8,8 @@ module.exports = require('./factory')('Payment', _.merge(option, {
   worktype: String,
   year: Number,
   month: Number,
-  paid: { type: Number, default: 0 }
+  paid: { type: Number, default: 0 },
+  verified: { type: Boolean, default: false }
 }), {
   employee: 'text', 
   project: 'text', 
