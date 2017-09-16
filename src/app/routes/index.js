@@ -6,6 +6,7 @@ module.exports = function(app) {
   app.use('/api/payment', require('./payment.route'));
   app.use('/api/worktime', require('./worktime.route'));
   app.use('/api/worktype', require('./worktype.route'));
+  app.use('/api/statics', require('./statics.route'));
 
   app.route('/url(api|auth|components|app|browser_components|assets)/*')
     .get(errors[404]);

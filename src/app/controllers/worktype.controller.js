@@ -4,6 +4,20 @@ var Worktype = require('../models/worktype.model');
 
 var publicApi = {};
 
+/**
+ * Private methods
+ */
+var createNew = function() {
+  return function(entity) {
+    // entity is the param passed down from up chain, 
+    // here if it already exists, it will pass down null.
+    // otherwise, it pass down req.body
+    if(entity) { 
+      return Worktype.create(entity);
+    }
+  };
+};
+
 // get total count of the entries
 publicApi.total = function(req, res) {
   return Worktype.count().exec()
@@ -77,20 +91,6 @@ publicApi.destroy = function(req, res) {
     .then(handler.handleEntityNotFound(res))
     .then(handler.removeEntity(res))
     .catch(handler.handleError(res));
-};
-
-/**
- * Private methods
- */
-var createNew = function() {
-  return function(entity) {
-    // entity is the param passed down from up chain, 
-    // here if it already exists, it will pass down null.
-    // otherwise, it pass down req.body
-    if(entity) { 
-      return Worktype.create(entity);
-    }
-  };
 };
 
 module.exports = publicApi;
