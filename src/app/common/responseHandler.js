@@ -12,6 +12,26 @@ publicApi.respondWithResult = function(res, statusCode) {
   };
 };
 
+publicApi.respondWithResultMapping = function(res, params, statusCode) {
+  statusCode = statusCode || 200;
+  return function(entity) {
+    if (entity) {
+      var ret = [];
+      _.forEach(entity, (data) => {
+        var ent = {};
+        _.forEach(params, (value, index) => {
+          ent[value] = data._id["key" + (index + 1)];
+        })
+        ent["totalWorktime"] = data["totalWorktime"];
+        ent["totalPaid"] = data["totalPaid"];
+        ret.push(ent);     
+      })
+      
+      res.status(statusCode).json(ret);
+    }
+  };
+};
+
 publicApi.saveUpdates = function(updates) {
   return function(entity) {
     var updated = _.merge(entity, updates);
