@@ -10,7 +10,13 @@ User.find({}).remove()
   User.create(
     {
       username: "wenyanqin",
-      password: "passw@rd"
+      password: "wyq2017"
+    }
+  );
+  User.create(
+    {
+      username: "yanyeli",
+      password: "yyl2017"
     }
   );
 });
