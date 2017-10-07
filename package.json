@@ -20,19 +20,19 @@
   "license": "ISC",
   "homepage": "https://bitbucket.org/kangleyu/worktime-api#readme",
   "dependencies": {
-    "bcrypt": "^1.0.2",
-    "body-parser": "^1.17.1",
-    "cors": "^2.8.3",
-    "express": "^4.15.2",
-    "jsonwebtoken": "^7.4.0",
+    "bcrypt": "^1.0.3",
+    "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
+    "express": "^4.16.1",
+    "jsonwebtoken": "^7.4.3",
     "lodash": "^4.17.4",
-    "mongoose": "^4.9.7",
-    "morgan": "^1.8.1"
+    "mongoose": "^4.12.0",
+    "morgan": "^1.9.0"
   },
   "devDependencies": {
     "del": "^2.2.2",
     "gulp": "^3.9.1",
-    "gulp-filter": "^5.0.0",
+    "gulp-filter": "^5.0.1",
     "gulp-if": "^2.0.2",
     "gulp-jscs": "^4.0.0",
     "gulp-jshint": "^2.0.4",
@@ -40,12 +40,12 @@
     "gulp-nodemon": "^2.2.1",
     "gulp-plumber": "^1.1.0",
     "gulp-print": "^2.0.1",
-    "gulp-strip-comments": "^2.4.5",
+    "gulp-strip-comments": "^2.5.1",
     "gulp-task-listing": "^1.0.1",
     "gulp-uglify": "^2.1.2",
     "gulp-util": "^3.0.8",
     "jscs": "^3.0.7",
-    "jshint": "^2.9.4",
+    "jshint": "^2.9.5",
     "jshint-stylish": "^2.2.1",
     "yargs": "^7.1.0"
   }

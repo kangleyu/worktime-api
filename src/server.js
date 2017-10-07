@@ -32,6 +32,7 @@ require('./app/routes')(app);
 
 // Seed database if required
 if (config.seedDB) { require('./app/config/seed'); }
+if (config.seedUser) { require('./app/config/seedUser'); }
 
 // start the application
 app.listen(port, function() {

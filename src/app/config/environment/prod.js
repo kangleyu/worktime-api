@@ -22,5 +22,9 @@ module.exports = {
   },
 
   // Seed database on startup
-  seedDB: false
+  seedDB: false,
+  seedUser: false,
+
+  // MonogDB user collection jwt token secret
+  secret: 'jwt_worktime_api_token_secret'
 };
