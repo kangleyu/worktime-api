@@ -9,14 +9,14 @@ User.find({}).remove()
 .then(() => {
   User.create(
     {
-      username: "wenyanqin",
-      password: "wyq2017"
+      username: 'wenyanqin',
+      password: 'wyq2017'
     }
   );
   User.create(
     {
-      username: "yanyeli",
-      password: "yyl2017"
+      username: 'yanyeli',
+      password: 'yyl2017'
     }
   );
 });

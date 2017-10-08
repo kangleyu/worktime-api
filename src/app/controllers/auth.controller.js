@@ -2,7 +2,7 @@ var jwt = require('jsonwebtoken');
 var config = require('../config/environment');
 var User = require('../models/user.model');
 
-publicApi = {};
+var publicApi = {};
 
 publicApi.register = function(req, res) {
   var username = req.body.username || undefined;
@@ -29,7 +29,7 @@ publicApi.register = function(req, res) {
       }
     });
   } else {
-    res.json({ status: false, msg: "Failed to create new user, please make sure you provide valid request."})
+    res.json({ status: false, msg: 'Failed to create new user, please make sure you provide valid request.'});
   }
 };
 
@@ -50,18 +50,18 @@ publicApi.authenticate = function(req, res) {
                 var token = jwt.sign(user, config.secret);
                 res.json({ status: true, token: token });
               } else {
-                res.json({ status: false, msg: "Invalid password" });
+                res.json({ status: false, msg: 'Invalid password' });
               }
             }
           });
         } else {
-          res.json({ status: false, msg: "This user doesn't exist" });
+          res.json({ status: false, msg: 'This user does not exist' });
         }
       }
     });
   } else {
-    res.json({ status: false, msg: "Failed to authenticate user, please make sure you provided valid request."})
+    res.json({ status: false, msg: 'Failed to authenticate user, please make sure you provided valid request.'});
   }
-}
+};
 
 module.exports = publicApi;

@@ -4,7 +4,7 @@ var authenticator = require('../helpers/authenticator');
 
 var router = express.Router();
 
-router.get('/general', authenticator.ensureAuthorized, controller.generalInfo)
+router.get('/general', authenticator.ensureAuthorized, controller.generalInfo);
 router.get('/employee', authenticator.ensureAuthorized, controller.employeeInfo);
 router.get('/projectsInfo', authenticator.ensureAuthorized, controller.projectsInfo);
 router.get('/worktypesInfo', authenticator.ensureAuthorized, controller.worktypesInfo);

@@ -20,12 +20,12 @@ publicApi.respondWithResultMapping = function(res, params, statusCode) {
       _.forEach(entity, (data) => {
         var ent = {};
         _.forEach(params, (value, index) => {
-          ent[value] = data._id["key" + (index + 1)];
-        })
-        ent["totalWorktime"] = data["totalWorktime"];
-        ent["totalPaid"] = data["totalPaid"];
+          ent[value] = data._id['key' + (index + 1)];
+        });
+        ent['totalWorktime'] = data['totalWorktime'];
+        ent['totalPaid'] = data['totalPaid'];
         ret.push(ent);     
-      })
+      });
       
       res.status(statusCode).json(ret);
     }
@@ -67,8 +67,8 @@ publicApi.handleEntityExists = function(req, res) {
   return function(entity) {
     if (entity.length > 0) {
       res.status(302).send({
-        "ErrorCode": "302",
-        "Message": "Entity already exists." 
+        'ErrorCode': '302',
+        'Message': 'Entity already exists.' 
       }).end();
       return null;
     }

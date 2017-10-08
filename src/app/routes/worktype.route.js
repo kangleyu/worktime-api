@@ -10,7 +10,7 @@ router.get('/page/:index/size/:size', authenticator.ensureAuthorized, controller
 router.get('/total', authenticator.ensureAuthorized, controller.total);
 router.get('/search/:term', authenticator.ensureAuthorized, controller.search);
 router.get('/search/:term/page/:index', authenticator.ensureAuthorized, controller.search);
-router.get('/search/:term/page/:index/size/:size', authenticator.ensureAuthorized, controller.search)
+router.get('/search/:term/page/:index/size/:size', authenticator.ensureAuthorized, controller.search);
 
 router.get('/', authenticator.ensureAuthorized, controller.index);
 router.get('/:id', authenticator.ensureAuthorized, controller.show);

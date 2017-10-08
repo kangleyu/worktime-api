@@ -6,7 +6,7 @@ var Employee = require('../models/employee.model');
 var Project = require('../models/project.model');
 var Worktype = require('../models/worktype.model');
 
-publicApi = {};
+var publicApi = {};
 
 publicApi.getProjectGeneral = function() {
   return Project.distinct('name').count().exec()
@@ -15,9 +15,9 @@ publicApi.getProjectGeneral = function() {
       var result = {};
       result.totalProjects = entity;
       return result;
-    }
-  }())
-}
+    };
+  }());
+};
 
 publicApi.getPaymentsGeneral = function(req, res) {
   return function(entity) {
@@ -28,10 +28,10 @@ publicApi.getPaymentsGeneral = function(req, res) {
       return function(internalEntity) {
         entity.totalPayments = internalEntity[0].total;
         return entity;
-      }
+      };
     }());
-  }
-}
+  };
+};
 
 publicApi.getEmployeeGeneral = function(req, res) {
   return function(entity) {
@@ -40,7 +40,7 @@ publicApi.getEmployeeGeneral = function(req, res) {
       return function(entity1) {
         entity.totalEmployee = entity1;
         return entity;
-      }
+      };
     }())
     .then(function() {
       return function(entity) {
@@ -49,9 +49,9 @@ publicApi.getEmployeeGeneral = function(req, res) {
           return function(entity1) {
             entity.totalMales = entity1;
             return entity;
-          }
-        }())
-      }
+          };
+        }());
+      };
     }())
     .then(function() {
       return function(entity) {
@@ -60,12 +60,12 @@ publicApi.getEmployeeGeneral = function(req, res) {
           return function(entity1) {
             entity.totalFemales = entity1;
             return entity;
-          }
-        }())
-      }
-    }())
+          };
+        }());
+      };
+    }());
   };
-}
+};
 
 publicApi.getWorktypesGeneral = function(req, res) {
   return function(entity) {
@@ -74,9 +74,9 @@ publicApi.getWorktypesGeneral = function(req, res) {
       return function(entity1) {
         entity.totalWorktypes = entity1;
         return entity;
-      }
+      };
     }());
-  }
+  };
 };
 
 module.exports = publicApi;

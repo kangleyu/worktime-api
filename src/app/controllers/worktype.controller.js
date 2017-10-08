@@ -23,7 +23,7 @@ publicApi.total = function(req, res) {
   return Worktype.count().exec()
     .then(handler.respondWithResult(res))
     .catch(handler.handleError(res));
-}
+};
 
 // get page data based on index and size
 publicApi.page = function(req, res) {

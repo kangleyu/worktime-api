@@ -24,10 +24,10 @@ publicApi.generalInfo = function (req, res) {
   .then(helper.general.getWorktypesGeneral(req, res))
   .then(handler.respondWithResult(res))
   .catch(handler.handleError(res));
-}
+};
 
 publicApi.projectsInfo = function (req, res) {
-}
+};
 
 publicApi.employeeInfo = function (req, res) {
   Employee.aggregate(helper.employee.getAggregateCondition(true))
@@ -35,21 +35,21 @@ publicApi.employeeInfo = function (req, res) {
     .then(helper.employee.aggregateFemale())
     .then(handler.respondWithResult(res))
     .catch(handler.handleError(res));
-}
+};
 
 publicApi.worktypesInfo = function (req, res) {
-}
+};
 
 publicApi.worktimesInfo = function (req, res) {
-}
+};
 
 publicApi.paymentsInfo = function (req, res) {
-}
+};
 
 publicApi.worktimesPerYearMonth = function (req, res) {
-}
+};
 
 publicApi.paymentsPerYearMonth = function (req, res) {
-}
+};
 
 module.exports = publicApi;
