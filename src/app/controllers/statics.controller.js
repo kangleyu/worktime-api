@@ -30,9 +30,7 @@ function getStaticsData(req, res, model, action) {
     idx++;
   })
   idx = 1;
-
-  console.log(sortKey);
-
+  
   switch(model) {
     case "worktime": {
       if (action === "aggregate") {
