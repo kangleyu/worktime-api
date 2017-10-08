@@ -28,6 +28,8 @@ publicApi.getPaymentsGeneral = function(req, res) {
       return function(internalEntity) {
         if (internalEntity !== undefined && internalEntity[0] !== undefined) {
           entity.totalPayments = internalEntity[0].total;
+        } else {
+          entity.totalPayments = '0';
         }
         return entity;
       };
