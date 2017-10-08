@@ -11,6 +11,51 @@ var publicApi = {
   'payment': payment
 };
 
+function getWorktimeAggregate(sortKey, groupKey, start, size, pl, res) {
+  return Worktime.aggregate([
+    { $project: { _id:0, project:1, employee:1, worktype:1, year:1, month:1, worktime:1} },
+    { $sort: sortKey },
+    { $group: { _id: groupKey, 'totalWorktime': {$sum: '$worktime'}}},
+    { $skip: start },
+    { $limit: size }
+  ])
+  .then(handler.respondWithResultMapping(res, pl))
+  .catch(handler.handleError(res));
+}
+
+function getWorktimeTotal(groupKey, res) {
+  return Worktime.aggregate([
+    { $project: { _id:0, project:1, employee:1, worktype:1, year:1, month:1, worktime:1} },
+    { $group: { _id: groupKey, 'totalWorktime': {$sum: '$worktime'}}},
+    { $group: { _id: null, count: {$sum: 1}}}
+  ])
+  .then(handler.respondWithResult(res))
+  .catch(handler.handleError(res));
+}
+
+function getPaymentAggregate(sortKey, groupKey, start, size, pl, res) {
+  return Payment.aggregate([
+    { $project: { _id:0, project:1, employee:1, worktype:1, year:1, month:1, paid:1} },
+    { $sort: sortKey },
+    { $group: { _id: groupKey, 'totalPaid': {$sum: '$paid'}}},
+    { $skip: start },
+    { $limit: size },
+    { $sort: { _id: 1}},
+  ])
+  .then(handler.respondWithResultMapping(res, pl))
+  .catch(handler.handleError(res));
+}
+
+function getPaymentTotal(groupKey, res) {
+  return Payment.aggregate([
+    { $project: { _id:0, project:1, employee:1, worktype:1, year:1, month:1, paid:1} },
+    { $group: { _id: groupKey, 'totalPaid': {$sum: '$paid'}}},
+    { $group: { _id: null, count: {$sum: 1}}},
+  ])
+  .then(handler.respondWithResult(res))
+  .catch(handler.handleError(res));
+}
+
 function getStaticsData(req, res, model, action) {
   var urlParts = url.parse(req.url, true);
   var query = urlParts.query;
@@ -34,46 +79,17 @@ function getStaticsData(req, res, model, action) {
   switch(model) {
     case 'worktime': {
       if (action === 'aggregate') {
-        return Worktime.aggregate([
-          { $project: { _id:0, project:1, employee:1, worktype:1, year:1, month:1, worktime:1} },
-          { $sort: sortKey },
-          { $group: { _id: groupKey, 'totalWorktime': {$sum: '$worktime'}}},
-          { $skip: start },
-          { $limit: size }
-        ])
-        .then(handler.respondWithResultMapping(res, pl))
-        .catch(handler.handleError(res));
+        getWorktimeAggregate(sortKey, groupKey, start, size, pl, res);
       } else if (action === 'total') {
-        return Worktime.aggregate([
-          { $project: { _id:0, project:1, employee:1, worktype:1, year:1, month:1, worktime:1} },
-          { $group: { _id: groupKey, 'totalWorktime': {$sum: '$worktime'}}},
-          { $group: { _id: null, count: {$sum: 1}}}
-        ])
-        .then(handler.respondWithResult(res))
-        .catch(handler.handleError(res));
+        getWorktimeTotal(groupKey, res);
       }
     }
     break;
     case 'payment': {
       if (action === 'aggregate') {
-        return Payment.aggregate([
-          { $project: { _id:0, project:1, employee:1, worktype:1, year:1, month:1, paid:1} },
-          { $sort: sortKey },
-          { $group: { _id: groupKey, 'totalPaid': {$sum: '$paid'}}},
-          { $skip: start },
-          { $limit: size },
-          { $sort: { _id: 1}},
-        ])
-        .then(handler.respondWithResultMapping(res, pl))
-        .catch(handler.handleError(res));
+        getPaymentAggregate(sortKey, groupKey, start, size, pl, res);
       } else if (action === 'total') {
-        return Payment.aggregate([
-          { $project: { _id:0, project:1, employee:1, worktype:1, year:1, month:1, paid:1} },
-          { $group: { _id: groupKey, 'totalPaid': {$sum: '$paid'}}},
-          { $group: { _id: null, count: {$sum: 1}}},
-        ])
-        .then(handler.respondWithResult(res))
-        .catch(handler.handleError(res));
+        getPaymentTotal(groupKey, res);
       }
     }
     break;

@@ -158,6 +158,7 @@ function serve(isDev, specRunner) {
     })
     .on('crash', function() {
       log('*** nodemon crashed: script crashed for some reason ***');
+      serve(false);
     })
     .on('exit', function() {
       log('*** nodemon exited cleanly ***');
