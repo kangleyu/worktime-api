@@ -26,7 +26,9 @@ publicApi.getPaymentsGeneral = function(req, res) {
     ])
     .then(function() {
       return function(internalEntity) {
-        entity.totalPayments = internalEntity[0].total;
+        if (internalEntity !== undefined && internalEntity[0] !== undefined) {
+          entity.totalPayments = internalEntity[0].total;
+        }
         return entity;
       };
     }());
@@ -38,7 +40,9 @@ publicApi.getEmployeeGeneral = function(req, res) {
     return Employee.distinct('name').count().exec()
     .then(function() {
       return function(entity1) {
-        entity.totalEmployee = entity1;
+        if (entity1 !== undefined) {
+          entity.totalEmployee = entity1;
+        }
         return entity;
       };
     }())
@@ -47,7 +51,9 @@ publicApi.getEmployeeGeneral = function(req, res) {
         return Employee.where('gender', '男').count().exec()
         .then(function() {
           return function(entity1) {
-            entity.totalMales = entity1;
+            if (entity1 !== undefined) {
+              entity.totalMales = entity1;
+            }
             return entity;
           };
         }());
@@ -58,7 +64,9 @@ publicApi.getEmployeeGeneral = function(req, res) {
         return Employee.where('gender', '女').count().exec()
         .then(function() {
           return function(entity1) {
-            entity.totalFemales = entity1;
+            if (entity1 !== undefined) {
+              entity.totalFemales = entity1;
+            }
             return entity;
           };
         }());
@@ -72,7 +80,9 @@ publicApi.getWorktypesGeneral = function(req, res) {
     return Worktype.distinct('worktype').count().exec()
     .then(function() {
       return function(entity1) {
-        entity.totalWorktypes = entity1;
+        if (entity1 !== undefined) {
+          entity.totalWorktypes = entity1;
+        }
         return entity;
       };
     }());
