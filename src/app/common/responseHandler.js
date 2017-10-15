@@ -22,8 +22,8 @@ publicApi.respondWithResultMapping = function(res, params, statusCode) {
         _.forEach(params, (value, index) => {
           ent[value] = data._id['key' + (index + 1)];
         });
-        ent['totalWorktime'] = data['totalWorktime'];
-        ent['totalPaid'] = data['totalPaid'];
+        ent['totalWorktime'] = parseFloat(data['totalWorktime']).toFixed(2);
+        ent['totalPaid'] = parseFloat(data['totalPaid']).toFixed(2);
         ret.push(ent);     
       });
       
