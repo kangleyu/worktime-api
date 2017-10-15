@@ -14,8 +14,8 @@ var publicApi = {
 function getWorktimeAggregate(sortKey, groupKey, start, size, pl, res) {
   return Worktime.aggregate([
     { $project: { _id:0, project:1, employee:1, worktype:1, year:1, month:1, worktime:1} },
-    { $sort: sortKey },
     { $group: { _id: groupKey, 'totalWorktime': {$sum: '$worktime'}}},
+    { $sort: sortKey },
     { $skip: start },
     { $limit: size }
   ])
@@ -75,7 +75,6 @@ function getStaticsData(req, res, model, action) {
     idx++;
   });
   idx = 1;
-
   switch(model) {
     case 'worktime': {
       if (action === 'aggregate') {
