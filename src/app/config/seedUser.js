@@ -9,12 +9,14 @@ User.find({}).remove()
 .then(() => {
   User.create(
     {
+      displayName: '闻燕琴',
       username: 'wenyanqin',
       password: 'wyq2017'
     }
   );
   User.create(
     {
+      displayName: '严叶利',
       username: 'yanyeli',
       password: 'yyl2017'
     }

@@ -48,7 +48,7 @@ publicApi.authenticate = function(req, res) {
             } else {
               if (isMatched) {
                 var token = jwt.sign(user, config.secret);
-                res.json({ status: true, token: token });
+                res.json({ status: true, token: token, name: user.displayName });
               } else {
                 res.json({ status: false, msg: 'Invalid password' });
               }
